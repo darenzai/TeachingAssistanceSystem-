@@ -1,0 +1,25 @@
+server:
+  port: 8190
+
+# mysql数据库连接
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3206/bishe?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    username: root
+    password: darenzai
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+logging:
+  level:
+    com.tony.acl.mapper: debug
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**.xml

@@ -1,0 +1,32 @@
+server:
+  port: 8150
+spring:
+  application:
+    name: xueliedu-ums
+  profiles:
+    active: dev
+  datasource: # 配置数据源
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3206/bishe?characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: darenzai
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  mail:
+    host: 
+
+logging: # 对mapper接口类开启debug的日志级别
+  level:
+    com.hujiayi.auxiliaryteach.ucenter.mapper: debug
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**Mapper.xml # 指定 mapper 文件的配置位置
+  global-config: # 配置逻辑删除
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+

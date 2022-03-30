@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hujiayi.auxiliaryteach.edu.mapper.CourseCollectMapper">
+
+    <select id="getCourseCollectionList" resultType="com.hujiayi.auxiliaryteach.edu.vo.CourseCollectionVo">
+        select
+            c1.id, c.id as courseId, c.title, CONVERT(c.price, DECIMAL(8,2)) as price,
+            c.lesson_num as lessonNum, c.cover, t.name as teacherName, c1.gmt_create as gmtCreate
+            FROM edu_course_collect c1
+                LEFT JOIN edu_course c on c.id = c1.course_id
+                LEFT JOIN edu_teacher t on t.id = c.teacher_id
+            WHERE c1.member_id = #{memberId} ORDER BY c1.gmt_create DESC
+    </select>
+</mapper>

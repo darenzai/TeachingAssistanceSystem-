@@ -1,0 +1,38 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: edu_route
+          uri: lb://xueliedu-edu
+          predicates:
+            - Path=/api/edu/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        - id: thirdparty_route
+          uri: lb://xueliedu-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        - id: ums_route
+          uri: lb://xueliedu-ums
+          predicates:
+            - Path=/api/ums/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        - id: ems_route
+          uri: lb://xueliedu-ems
+          predicates:
+            - Path=/api/ems/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        - id: acl_route
+          uri: lb://xueliedu-acl
+          predicates:
+            - Path=/api/admin/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
